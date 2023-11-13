@@ -415,7 +415,7 @@ ol {
 
   .player-name,
   .player input {
-    width: fit-content;
+    width: 4rem;
   }
 
   #game-board button {
