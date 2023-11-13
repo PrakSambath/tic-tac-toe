@@ -314,6 +314,10 @@ ol {
   margin-top: 1.5rem;
 }
 
+#footer {
+  color: #23221f;
+}
+
 @keyframes slide-in-from-left {
   0% {
     opacity: 0;
@@ -395,6 +399,25 @@ ol {
 }
 
 @media screen and (max-width: 500px) {
+  header img {
+    width: 3rem;
+    margin: 0.5rem auto 0.2rem auto;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 auto 1rem auto;
+  }
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .player-name,
+  .player input {
+    width: fit-content;
+  }
+
   #game-board button {
     width: 6rem;
     height: 6rem;

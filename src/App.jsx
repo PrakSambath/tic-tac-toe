@@ -6,6 +6,7 @@ import GameOver from "./GameOver.jsx";
 import Log from "./Log.jsx";
 import { checkWinner, computerChoice } from "./Utils.js";
 import Process from "./Process.jsx";
+import Footer from "./Footer.jsx";
 
 const initialBoards = [
   [null, null, null],
@@ -113,6 +114,7 @@ function App() {
       )}
       {isThinking && <Process activePlayer={playerNames[computerSymbol]} />}
       <Log gameTurns={gameTurns} playerNames={playerNames}></Log>
+      <Footer />
     </>
   );
 }
