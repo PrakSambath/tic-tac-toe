@@ -8,53 +8,36 @@ import { checkWinner, computerChoice } from "./Utils.js";
 import Process from "./Process.jsx";
 import Footer from "./Footer.jsx";
 
-const initialBoards = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-let playerWin = null;
+let winner = null;
 let isDraw = null;
 let isThinking = false;
-const symbols = ["X", "O"];
-// let winSquares = null;
+// const symbols = ["X", "O"];
+let winSquares = null;
 let computerSymbol = ["X", "O"][Math.floor(Math.random() * 2)];
 console.log("Computer :", computerSymbol);
 
 function App() {
   const [activePlayer, setActivePlayer] = useState("X");
-  // const [boards, setBoards] = useState(initialBoards);
   const [gameTurns, setGameTurns] = useState([]);
   const [playerNames, setPlayerNames] = useState({
     X: "អ្នកលេងទី១",
     O: "អ្នកលេងទី២",
   });
 
-  playerWin = checkWinner(gameTurns);
-  // const result = checkWinner(gameTurns);
-
-  // if (result != null) {
-  //   playerWin = result.player;
-  //   winSquares = result.winSquare;
-  // }
-
-  isDraw = !playerWin && gameTurns.length == 9;
-
-  function handleChangePlayer() {
-    setActivePlayer((preVal) => (preVal == "X" ? "O" : "X"));
-    isThinking = false;
+  const result = checkWinner(gameTurns);
+  winner = result.winner;
+  winSquares = result.winSquares;
+  isDraw = !winner && gameTurns.length == 9;
+  if (winner && activePlayer != winner) {
+    setActivePlayer(() => winner);
   }
 
-  function handleClick(row, col) {
-    // console.log(row, col);
+  function handleChangePlayer() {}
 
-    // setBoards((preBoard) => {
-    //   const newBoard = [...preBoard.map((item) => [...item])];
-    //   newBoard[row][col] = activePlayer;
-    //   return newBoard;
-    // });
-    handleChangePlayer();
-    let newGameTurns = null;
+  function handleClick(row, col) {
+    setActivePlayer((preVal) => (preVal == "X" ? "O" : "X"));
+    isThinking = false;
+    // let newGameTurns = null;
     setGameTurns((preTurns) => {
       preTurns.unshift({ player: activePlayer, rowIndex: row, colIndex: col });
       return preTurns;
@@ -62,10 +45,10 @@ function App() {
   }
   function rematch() {
     setActivePlayer("X");
-    // setBoards(() => initialBoards);
     setGameTurns([]);
-    playerWin = null;
-    isDraw = null;
+    // playerWin = null;
+
+    // isDraw = null;
     computerSymbol = ["X", "O"][Math.floor(Math.random() * 2)];
     console.log("Computer :", computerSymbol);
   }
@@ -76,7 +59,7 @@ function App() {
       return preVal;
     });
   }
-  if (!playerWin && !isDraw) {
+  if (!winner && !isDraw) {
     if (activePlayer === computerSymbol) {
       isThinking = true;
       setTimeout(() => {
@@ -103,12 +86,16 @@ function App() {
             onChangePlayerName={handleChangePlayerName}
           />
         </ol>
-        <Board onClick={handleClick} gameTurns={gameTurns} />
+        <Board
+          onClick={handleClick}
+          gameTurns={gameTurns}
+          winSquares={winSquares}
+        />
       </div>
-      {(playerWin || isDraw) && (
+      {(winner || isDraw) && (
         <GameOver
           onRestart={rematch}
-          winner={playerNames[playerWin]}
+          winner={playerNames[winner]}
           draw={isDraw}
         />
       )}

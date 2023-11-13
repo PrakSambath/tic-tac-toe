@@ -28,15 +28,12 @@ export function checkWinner(gameTurns) {
       }
     }
     if (count_x == 3) {
-      return "X";
-      // return { player: "X", winSquare: winPos[row] };
-    }
-    if (count_o == 3) {
-      return "O";
-      // return { player: "O", winSquare: winPos[row] };
+      return { winner: "X", winSquares: winPos[row] };
+    } else if (count_o == 3) {
+      return { winner: "O", winSquares: winPos[row] };
     }
   }
-  return null;
+  return { player: null, winSquares: null };
 }
 
 function possibleChoice(gameTurns, symbol) {
