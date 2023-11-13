@@ -393,3 +393,21 @@ ol {
     transform: scale(1);
   }
 }
+
+@media screen and (max-width: 500px) {
+  #game-board button {
+    width: 6rem;
+    height: 6rem;
+    font-size: 4rem;
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #game-board button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 3rem;
+    padding: 0.2rem;
+  }
+}
