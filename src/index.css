@@ -54,11 +54,6 @@ h1 {
   color: #3f3b00;
 }
 
-header p {
-  color: #3f3b00;
-  font-size: 1.2rem;
-}
-
 #game-container {
   max-width: 45rem;
   margin: 3rem auto;
@@ -417,13 +412,12 @@ ol {
     margin: 0 auto 1rem auto;
   }
 
-  header p {
-    font-size: 1rem;
-  }
-
   .player-name,
   .player input {
     width: 4rem;
+  }
+  #game-container {
+    margin: 1rem auto;
   }
 
   #game-board button {
