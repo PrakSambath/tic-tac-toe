@@ -11,7 +11,6 @@ import Footer from "./Footer.jsx";
 let winner = null;
 let isDraw = null;
 let isThinking = false;
-// const symbols = ["X", "O"];
 let winSquares = null;
 let computerSymbol = ["X", "O"][Math.floor(Math.random() * 2)];
 console.log("Computer :", computerSymbol);
@@ -32,12 +31,10 @@ function App() {
     setActivePlayer(() => winner);
   }
 
-  function handleChangePlayer() {}
 
   function handleClick(row, col) {
     setActivePlayer((preVal) => (preVal == "X" ? "O" : "X"));
     isThinking = false;
-    // let newGameTurns = null;
     setGameTurns((preTurns) => {
       preTurns.unshift({ player: activePlayer, rowIndex: row, colIndex: col });
       return preTurns;
@@ -46,9 +43,7 @@ function App() {
   function rematch() {
     setActivePlayer("X");
     setGameTurns([]);
-    // playerWin = null;
 
-    // isDraw = null;
     computerSymbol = ["X", "O"][Math.floor(Math.random() * 2)];
     console.log("Computer :", computerSymbol);
   }
